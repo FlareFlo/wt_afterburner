@@ -1,9 +1,13 @@
 [package]
 name = "wt_afterburner"
 version = "0.1.0"
+authors = ["FlareFlo <crates-io@flareflo.dev>"]
 edition = "2021"
 description = "Wraps thrust levels for the game War Thunder"
 license-file = "LICENSE"
+readme = "readme.md"
+homepage = "https://wt.flareflo.dev"
+
 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
