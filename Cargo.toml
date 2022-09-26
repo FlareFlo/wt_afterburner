@@ -4,6 +4,7 @@ version = "0.1.0"
 authors = ["FlareFlo <crates-io@flareflo.dev>"]
 edition = "2021"
 description = "Wraps thrust levels for the game War Thunder"
+repository = "https://github.com/Warthunder-Open-Source-Foundation/wt_afterburner"
 license-file = "LICENSE"
 readme = "readme.md"
 homepage = "https://wt.flareflo.dev"
