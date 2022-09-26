@@ -1,6 +1,6 @@
 [package]
 name = "wt_afterburner"
-version = "1.2.0"
+version = "1.3.0"
 authors = ["FlareFlo <crates-io@flareflo.dev>"]
 edition = "2021"
 description = "Wraps thrust levels for the game War Thunder"

@@ -9,7 +9,9 @@ pub struct Thrust {
 impl Thrust {
 	pub fn new(throttle: u8) -> Self {
 		let mut levels = [None; 10];
-		levels[thrust_to_ab_idx(throttle)] = Some(throttle);
+		if let Some(res) = 	levels.get_mut(thrust_to_ab_idx(throttle)) {
+			*res = Some(throttle)
+		}
 		Self {
 			current: throttle,
 			ab_levels: levels,
@@ -17,7 +19,9 @@ impl Thrust {
 	}
 	pub fn add_ab_level(&mut self, throttle: u8) {
 		if throttle > 100 {
-			self.ab_levels[thrust_to_ab_idx(throttle)] = Some(throttle);
+			if let Some(res) = self.ab_levels.get_mut(thrust_to_ab_idx(throttle)) {
+				*res = Some(throttle)
+			}
 		}
 	}
 	// This function trades not needing a &mut ref for returning an option
@@ -44,7 +48,7 @@ impl Thrust {
 }
 
 fn thrust_to_ab_idx(throttle: u8) -> usize {
-    let abs = throttle.saturating_sub(100) - 1;
+    let abs = throttle.saturating_sub(100 + 1);
     abs as usize
 }
 
@@ -57,7 +61,7 @@ mod tests {
 		let mut thrust = Thrust::new(101);
 		thrust.add_ab_level(110);
 		thrust.add_ab_level(105);
-		assert_eq!(1, thrust.get_and_set_ab(105))
+		assert_eq!(1, thrust.get_and_set_ab(105).unwrap())
 	}
 
 	#[test]
@@ -68,6 +72,14 @@ mod tests {
 		}
 		for i in 0..10 {
 			assert_eq!(Some(i), thrust.get_ab(i + 100 + 1))
+		}
+	}
+
+	#[test]
+	fn test_all() {
+		let mut thrust = Thrust::new(0);
+		for i in 0..=110 {
+			thrust.get_and_set_ab(i);
 		}
 	}
 }
