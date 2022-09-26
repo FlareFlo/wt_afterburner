@@ -2,10 +2,10 @@
 name = "wt_afterburner"
 version = "0.1.0"
 edition = "2021"
+description = "Wraps thrust levels for the game War Thunder"
+license-file = "LICENSE"
 
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-strum = "^0.24"
-strum_macros = "^0.24"
