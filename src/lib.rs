@@ -16,10 +16,15 @@ impl Thrust {
 		}
 	}
 	pub fn add_ab_level(&mut self, throttle: u8) {
-		self.ab_levels[thrust_to_ab_idx(throttle)] = Some(throttle);
+		if throttle > 100 {
+			self.ab_levels[thrust_to_ab_idx(throttle)] = Some(throttle);
+		}
 	}
 	// This function trades not needing a &mut ref for returning an option
 	fn get_ab(&self, throttle: u8) -> Option<u8> {
+		if throttle < 101 {
+			return None;
+		}
 		let known_stages = self.ab_levels.into_iter().filter_map(|x|x).enumerate();
 
 		for (idx, known_stage) in known_stages {
