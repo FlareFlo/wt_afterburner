@@ -34,10 +34,9 @@ impl Thrust {
 		}
 		return None;
 	}
-	pub fn get_and_set_ab(&mut self, throttle: u8) -> u8 {
+	pub fn get_and_set_ab(&mut self, throttle: u8) -> Option<u8> {
 		self.add_ab_level(throttle);
-		// Should never fail due to above
-		self.get_ab(throttle).unwrap_or(255)
+		self.get_ab(throttle)
 	}
 	pub fn get_current (&self) -> u8 {
 		self.current
